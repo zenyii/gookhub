@@ -1,10 +1,11 @@
 <template>
   <div class="home">
-    
+    <navigator></navigator>
   </div>
 </template>
 
 <script>
+import navigator from './Navigator'
 export default {
   name: 'Home',
   data () {
@@ -14,6 +15,9 @@ export default {
   },
   methods:{
     
+  },
+  component:{
+    navigator
   }
 }
 </script>
