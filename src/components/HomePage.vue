@@ -31,7 +31,6 @@
       <label>查看更多></label>
     </el-col>     
   </el-row>
-    
   </div>
 </template>
 
