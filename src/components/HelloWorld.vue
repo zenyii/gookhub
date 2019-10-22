@@ -1,19 +1,25 @@
 <template>
   <div class="hello">
-    <div class="slogen">
-    <h1>加入会员</h1>
-    <h1>享受更多精品课程！</h1>
-    </div>
-    <div class="login">
-      <h1>在线学习网站</h1>
-      <h3>用户名或账号：</h3>
-      <input id="input">
-      <h3>密码：</h3>
-      <input id="input">
-      <h6>忘记密码？</h6>
-      <el-button type="danger" style="width: 250px;font-size: 20px" @click="nextPage()">登陆</el-button>
-      <div style="margin-top: 20px;"><span id="tips">创建新账号</span><span id="tips">管理员模式</span></div>
-    </div>
+    <el-row>
+      <el-col :span="12">
+        <div class="slogen">
+        <h1>加入会员</h1>
+        <h1>享受更多精品课程！</h1>
+        </div>
+      </el-col>
+      <el-col :span="12">
+        <div class="login">
+          <h1>在线学习网站</h1>
+          <h3>用户名或账号：</h3>
+          <input id="input">
+          <h3>密码：</h3>
+          <input id="input">
+          <h6>忘记密码？</h6>
+          <el-button type="danger" style="width: 250px;font-size: 20px" @click="nextPage()">登陆</el-button>
+          <div style="margin-top: 20px;"><span id="tips">创建新账号</span><span id="tips">管理员模式</span></div>
+        </div>
+      </el-col>
+  </el-row>
   </div>
 </template>
 
