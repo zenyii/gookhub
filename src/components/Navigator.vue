@@ -1,34 +1,36 @@
 <template>
   <div class="home">
-      <el-menu
-      :default-active="activeIndex"
-      mode="horizontal"
-      class="el-menu-demo"
-      @select="handleSelect"
-      background-color="black"
-      text-color="#fff"
-      active-text-color="#fff">
-      <el-menu-item index="1" style="font-size: 25px;"><img src="../assets/logo.png" style="width: 40px; margin: 10px;">在线学习网站</el-menu-item>
-      <el-submenu index="2" style="margin-left: 50px;">
-        <template slot="title">课程分类</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
-        <el-menu-item index="2-2">选项2</el-menu-item>  
-        <el-menu-item index="2-3">选项3</el-menu-item>
-        <el-submenu index="2-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-          <el-menu-item index="2-4-2">选项2</el-menu-item>
-          <el-menu-item index="2-4-3">选项3</el-menu-item>
+      <el-row>             <!--导航栏-->
+        <el-menu
+        :default-active="activeIndex"
+        mode="horizontal"
+        class="el-menu-demo"
+        @select="handleSelect"
+        background-color="black"
+        text-color="#fff"
+        active-text-color="#fff">
+        <el-menu-item index="1" style="font-size: 25px;"><img src="../assets/logo.png" style="width: 40px; margin: 10px;">在线学习网站</el-menu-item>
+        <el-submenu index="2" style="margin-left: 50px;">
+            <template slot="title">课程分类</template>
+            <el-submenu v-for="(les,index) in lessons" index="2-index">
+              <template slot="title">{{les.class}}</template>
+              <el-menu-item v-for="(le,ind) in les.lesson" index="2-index-ind">{{le.name}}{{ind}}</el-menu-item>
+            </el-submenu>        
         </el-submenu>
-      </el-submenu>
-      <div class="search">
-        <el-input v-model="input" style="width: 250px;position: relative;top: -5px;"></el-input>
-        <img src="../assets/搜索.jpg" style="width: 40px;height: 40px;position: relative;top: 10px;margin-left: 10px;">
-      </div>
-      <el-submenu index="4" style="float: right;"><template slot="title">xxx用户/管理员</template>
-        <el-menu-item index="4-1" style="width: 200px;">退出<i class="el-icon-error" style="margin-left: 5px;"></i></el-menu-item>
-      </el-submenu>
-    </el-menu>
+        <div class="search">
+            <el-input v-model="input" style="width: 250px;position: relative;top: -5px;"></el-input>
+            <img src="../assets/搜索.jpg" style="width: 40px;height: 40px;position: relative;top: 10px;margin-left: 10px;">
+        </div>
+        <el-submenu index="4" style="float: right;margin-right: 50px;">
+          <template slot="title"><img src="../assets/女用户.png" style="width: 30px;">用户/管理员</template>
+          <el-menu-item index="4-1" style="width: 150px;">个人信息</el-menu-item>
+          <el-menu-item index="4-2" style="width: 150px;">课程收藏</el-menu-item>
+          <el-menu-item index="4-3" style="width: 150px;">我的笔记</el-menu-item>
+          <el-menu-item index="4-4" style="width: 150px;">我的考试</el-menu-item>
+          <el-menu-item index="4-5" style="width: 150px;">会员状态</el-menu-item>
+        </el-submenu>
+      </el-menu>
+      </el-row>
   </div>
 </template>
 
@@ -40,7 +42,42 @@ export default {
       input:'',
       activeIndex:'',
       lessons:[
-        
+        {
+          class:"专区一",
+          lesson:[
+            {name:"课程",num:102,time:79},
+            {name:"课程",num:102,time:79},
+            {name:"课程",num:102,time:79},
+            {name:"课程",num:102,time:79},
+          ]
+        },
+        {
+          class:"专区二",
+          lesson:[
+            {name:"课程",num:102,time:79},
+            {name:"课程",num:102,time:79},
+            {name:"课程",num:102,time:79},
+            {name:"课程",num:102,time:79},
+          ]
+        },
+        {
+          class:"专区三",
+          lesson:[
+            {name:"课程",num:102,time:79},
+            {name:"课程",num:102,time:79},
+            {name:"课程",num:102,time:79},
+            {name:"课程",num:102,time:79},
+          ]
+        },
+        {
+          class:"专区四",
+          lesson:[
+            {name:"课程",num:102,time:79},
+            {name:"课程",num:102,time:79},
+            {name:"课程",num:102,time:79},
+            {name:"课程",num:102,time:79},
+          ]
+        }
       ]
     }
   },
