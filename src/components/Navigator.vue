@@ -12,16 +12,19 @@
         <el-menu-item index="1" style="font-size: 25px;"><img src="../assets/logo.png" style="width: 40px; margin: 10px;">在线学习网站</el-menu-item>
         <el-submenu index="2" style="margin-left: 50px;">
             <template slot="title">课程分类</template>
-            <el-submenu v-for="(les,index) in lessons" index="2-index">
+            <el-submenu v-for="(les,index1) in lessons" :index="index1">
               <template slot="title">{{les.class}}</template>
-              <el-menu-item v-for="(le,ind) in les.lesson" index="2-index-ind">{{le.name}}{{ind}}</el-menu-item>
+              <el-menu-item v-for="(le,index2) in les.lesson" :index="index2">
+                {{le.front}}
+                <img src="">
+              </el-menu-item>
             </el-submenu>        
         </el-submenu>
         <div class="search">
             <el-input v-model="input" style="width: 250px;position: relative;top: -5px;"></el-input>
             <img src="../assets/搜索.jpg" style="width: 40px;height: 40px;position: relative;top: 10px;margin-left: 10px;">
         </div>
-        <el-submenu index="4" style="float: right;margin-right: 50px;">
+        <el-submenu index="4" style="float: right;margin-right: 50px;">8
           <template slot="title"><img src="../assets/女用户.png" style="width: 30px;">用户/管理员</template>
           <el-menu-item index="4-1" style="width: 150px;">个人信息</el-menu-item>
           <el-menu-item index="4-2" style="width: 150px;">课程收藏</el-menu-item>
@@ -45,45 +48,45 @@ export default {
         {
           class:"专区一",
           lesson:[
-            {name:"课程",num:102,time:79},
-            {name:"课程",num:102,time:79},
-            {name:"课程",num:102,time:79},
-            {name:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
           ]
         },
         {
           class:"专区二",
           lesson:[
-            {name:"课程",num:102,time:79},
-            {name:"课程",num:102,time:79},
-            {name:"课程",num:102,time:79},
-            {name:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
           ]
         },
         {
           class:"专区三",
           lesson:[
-            {name:"课程",num:102,time:79},
-            {name:"课程",num:102,time:79},
-            {name:"课程",num:102,time:79},
-            {name:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
           ]
         },
         {
           class:"专区四",
           lesson:[
-            {name:"课程",num:102,time:79},
-            {name:"课程",num:102,time:79},
-            {name:"课程",num:102,time:79},
-            {name:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
+            {front:"课程",num:102,time:79},
           ]
         }
       ]
     }
   },
   methods:{
-    handleSelect(){
-
+    handleSelect(key,keyPath){
+      console.log(key,keyPath)
     }
   }
 }
