@@ -2,6 +2,7 @@
   <div class="home">
       <el-row>             <!--导航栏-->
         <el-menu
+        router
         :default-active="activeIndex"
         mode="horizontal"
         class="el-menu-demo"
@@ -9,28 +10,41 @@
         background-color="black"
         text-color="#fff"
         active-text-color="#fff">
-        <el-menu-item index="1" style="font-size: 25px;"><img src="../assets/logo.png" style="width: 40px; margin: 10px;">在线学习网站</el-menu-item>
+        <el-menu-item index="1" style="font-size: 25px;" route="/index"><img src="../assets/logo.png" style="width: 40px; margin: 10px;">在线学习网站</el-menu-item>
+        <!--课程分类栏-->
         <el-submenu index="2" style="margin-left: 50px;">
             <template slot="title">课程分类</template>
             <el-submenu v-for="(les,index1) in lessons" :index="index1">
               <template slot="title">{{les.class}}</template>
-              <el-menu-item v-for="(le,index2) in les.lesson" :index="index2">
-                {{le.front}}
-                <img src="">
-              </el-menu-item>
+                  <el-row :gutter="10" style="width: 500px;">
+                    <el-col :span="8" v-for="(le,index2) in les.lesson" v-if="index2 < 3">
+                        <el-image :src="le.front" style="margin:0 5px;"></el-image>
+                        <span style="color: white;font-size: 15px;">{{le.num}}节  {{le.time}}h</span>
+                    </el-col>     
+                  </el-row>
+                  <el-row :gutter="10" style="width: 500px;">
+                      <el-col :span="8" v-for="(le,index2) in les.lesson" v-if="index2 > 2">
+                          <el-image :src="le.front" style="margin:0 5px;"></el-image>
+                          <span style="color: white;font-size: 15px;">{{le.num}}节  {{le.time}}h</span>
+                      </el-col>     
+                  </el-row>
+                  <span style="float:right;color: white; font-size: 13px; margin-right: 10px;">查看更多</span>
             </el-submenu>        
         </el-submenu>
-        <div class="search">
+        <!--搜索栏-->
+        <div class="search">  
             <el-input v-model="input" style="width: 250px;position: relative;top: -5px;"></el-input>
             <img src="../assets/搜索.jpg" style="width: 40px;height: 40px;position: relative;top: 10px;margin-left: 10px;">
         </div>
-        <el-submenu index="4" style="float: right;margin-right: 50px;">8
+        <!--头像及昵称栏-->
+        <el-submenu index="4" style="float: right;width: 200px;">
           <template slot="title"><img src="../assets/女用户.png" style="width: 30px;">用户/管理员</template>
-          <el-menu-item index="4-1" style="width: 150px;">个人信息</el-menu-item>
-          <el-menu-item index="4-2" style="width: 150px;">课程收藏</el-menu-item>
-          <el-menu-item index="4-3" style="width: 150px;">我的笔记</el-menu-item>
-          <el-menu-item index="4-4" style="width: 150px;">我的考试</el-menu-item>
-          <el-menu-item index="4-5" style="width: 150px;">会员状态</el-menu-item>
+          <el-menu-item index="4-1" style="text-align: center;" route="/personal">个人信息</el-menu-item>
+          <el-menu-item index="4-2" style="text-align: center;" route="/collect">课程收藏</el-menu-item>
+          <el-menu-item index="4-3" style="text-align: center;" route="/note">我的笔记</el-menu-item>
+          <el-menu-item index="4-4" style="text-align: center;" route="/test">我的考试</el-menu-item>
+          <el-menu-item index="4-5" style="text-align: center;" route="/vip">会员状态</el-menu-item>
+          <el-menu-item index="4-6" style="text-align: center;" route="/login">退出</el-menu-item>
         </el-submenu>
       </el-menu>
       </el-row>
@@ -48,37 +62,45 @@ export default {
         {
           class:"专区一",
           lesson:[
-            {front:"课程",num:102,time:79},
-            {front:"课程",num:102,time:79},
-            {front:"课程",num:102,time:79},
-            {front:"课程",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
           ]
         },
         {
           class:"专区二",
           lesson:[
-            {front:"课程",num:102,time:79},
-            {front:"课程",num:102,time:79},
-            {front:"课程",num:102,time:79},
-            {front:"课程",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
           ]
         },
         {
           class:"专区三",
           lesson:[
-            {front:"课程",num:102,time:79},
-            {front:"课程",num:102,time:79},
-            {front:"课程",num:102,time:79},
-            {front:"课程",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
           ]
         },
         {
           class:"专区四",
           lesson:[
-            {front:"课程",num:102,time:79},
-            {front:"课程",num:102,time:79},
-            {front:"课程",num:102,time:79},
-            {front:"课程",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
+            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
           ]
         }
       ]
@@ -94,6 +116,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .home{
+    color: white;
+  }
   .search{
     width: 350px;
     height: 50px;
