@@ -1,8 +1,9 @@
 import axios from 'axios'
+import config from '../config'
 
 let http = axios.create({
-    baseURL: 'http://api.gookhub.cn',
-    withCredentials: true,
+    baseURL: config.baseURL,
+    withCredentials: false,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
     },

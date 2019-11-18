@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" v-loading="load">
     <el-row>
       <el-col :span="12">
         <div class="slogen">
@@ -17,7 +17,7 @@
           <el-input placeholder="请输入密码" v-model="password" style="width: 300px;" show-password clearable></el-input>
           <div style="font-size: 12px;color:red;" v-if="!pwdRight">*密码输入错误*</div>
           <h6>忘记密码？</h6>
-          <el-button type="danger" style="width: 250px;font-size: 20px" @click="login()">登陆</el-button>
+          <el-button type="danger" style="width: 300px;font-size: 20px" @click="login()">登陆</el-button>
           <div style="margin-top: 20px;"><span id="tips">创建新账号</span><span id="tips">管理员模式</span></div>
         </div>
       </el-col>
@@ -34,13 +34,11 @@ export default {
       password:'',
       countRight:true,
       pwdRight:true,
-      acountAlert:''
+      acountAlert:'',
+      load:false
     }
   },
   methods:{
-    nextPage:function(){
-      this.$router.push({path:'/index'})
-    },
     checkCount:function(){
       console.log(this.account);
       let e = /^\w{6,12}$/;
@@ -49,7 +47,6 @@ export default {
         this.acountAlert="账号不能为空"
       }
       else if(!e.test(this.account)){
-        console.log("错了")
         this.countRight=false;
         this.acountAlert="账号格式错误"
       }
@@ -58,16 +55,7 @@ export default {
       }
     },
     login: function () {
-      /*axios.post('http://api.gookhub.cn/index/login/login',
-        {
-        account:this.account,
-        password:this.password,
-        type:"user"
-        }).then(res=>{
-          console.log(res)
-      }).catch(err=>{
-          console.log(err)
-      })*/
+      this.load = true;   //加载动效设置
       this.$api.post('/index/login/login', {
           account:this.account,
           password:this.password,
@@ -75,23 +63,21 @@ export default {
         }, response => {
         if (response.status >= 200 && response.status < 300) {
           console.log(response.data);
+          this.load = false;         //加载动效取消
+          if(response.data.code==0){
+            this.$message({
+              message:response.data.Msg,
+              type:'success'
+            })
+            this.$router.push({path:'/index'})
+          }
+          else{
+            this.$message.error(response.data.Msg)
+          }
         } else {
           console.log(response.message);
         }
       });
-      /*this.$axios({
-        method:'post',
-        url:'/index/login/login',
-        data:{    //这里是发送给后台的数据
-          account:this.account,
-          password:this.password,
-          type:"user"
-          }
-        }).then((response) =>{          //这里使用了ES6的语法
-          console.log(response)       //请求成功返回的数据
-        }).catch((error) =>
-          console.log(error)       //请求失败返回的数据
-        )*/
    },
   }
 }
