@@ -1,3 +1,3 @@
 export default{
-    baseURL:'https://api.gookhub.cn'
+    baseURL:'https://api.gookhub.cn/index'
 }

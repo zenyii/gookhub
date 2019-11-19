@@ -56,7 +56,7 @@ export default {
     },
     login: function () {
       this.load = true;   //加载动效设置
-      this.$api.post('/index/login/login', {
+      this.$api.post('/login/login', {
           account:this.account,
           password:this.password,
           type:"user"

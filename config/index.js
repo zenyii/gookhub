@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api':{
-        target:'https://api.gookhub.cn',
+        target:'https://api.gookhub.cn/index',
         changeOrigin:true,
         pathRewrite:{
           '^/api':''

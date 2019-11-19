@@ -85,6 +85,23 @@ export default {
       ]
     }
   },
+  beforeCreate:function(){
+    this.$api.get('/get/all_lesson', {}, response => {
+        if (response.status >= 200 && response.status < 300) {
+          console.log(response.data);
+        } else {
+          console.log(response.message);
+        }
+      });
+    this.$api.get('/get/all_news', {}, response => {
+        if (response.status >= 200 && response.status < 300) {
+          console.log(response.data);
+        } else {
+          console.log(response.message);
+        }
+      });
+
+  },
   methods:{
     
   },
