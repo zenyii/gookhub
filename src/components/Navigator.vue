@@ -14,16 +14,16 @@
         <!--课程分类栏-->
         <el-submenu index="2" style="margin-left: 50px;">
             <template slot="title">课程分类</template>
-            <el-submenu v-for="(les,index1) in lessons" :index="index1">
+            <el-submenu v-for="(les,index1) in lessons" :index="'2-'+index1">
               <template slot="title">{{les.class}}</template>
                   <el-row :gutter="10" style="width: 500px;">
-                    <el-col :span="8" v-for="(le,index2) in les.lesson" v-if="index2 < 3">
+                    <el-col :span="8" v-for="(le,index2) in les.lesson" :index="'2-'+index1+'-'+index2" v-if="index2 < 3">
                         <el-image :src="le.front" style="margin:0 5px;"></el-image>
                         <span style="color: white;font-size: 15px;">{{le.num}}节  {{le.time}}h</span>
                     </el-col>     
                   </el-row>
                   <el-row :gutter="10" style="width: 500px;">
-                      <el-col :span="8" v-for="(le,index2) in les.lesson" v-if="index2 > 2">
+                      <el-col :span="8" v-for="(le,index2) in les.lesson" :index="'2-'+index1+'-'+index2" v-if="index2 > 2">
                           <el-image :src="le.front" style="margin:0 5px;"></el-image>
                           <span style="color: white;font-size: 15px;">{{le.num}}节  {{le.time}}h</span>
                       </el-col>     

@@ -23,15 +23,16 @@
     <div style="margin-left: 100px;">
     <!--信息栏-->
     <el-row style="width:1400px;border-top: 1px solid white;">
-      <el-button :class="[isInfo?'btnAct':'btn']" @click="changeInfo()">我的信息</el-button>
-      <el-button :class="[isVip?'btnAct':'btn']" @click="changeVip()">我的会员</el-button>
-      <el-button :class="[isCollect?'btnAct':'btn']" @click="changeCol()">课程收藏</el-button>
-      <el-button :class="[isNote?'btnAct':'btn']" @click="changeNote()">我的笔记</el-button>
-      <el-button :class="[isTest?'btnAct':'btn']" @click="changeTest()">我的考试</el-button>
+      <el-button :class="[status[0]?'btnAct':'btn']" @click="change(0)">我的信息</el-button>
+      <el-button :class="[status[1]?'btnAct':'btn']" @click="change(1)">我的会员</el-button>
+      <el-button :class="[status[2]?'btnAct':'btn']" @click="change(2)">课程收藏</el-button>
+      <el-button :class="[status[3]?'btnAct':'btn']" @click="change(3)">我的笔记</el-button>
+      <el-button :class="[status[4]?'btnAct':'btn']" @click="change(4)">我的考试</el-button>
     </el-row>
     <!--具体信息-->
     <el-row>
-      <div class="detailMsg" v-if="isInfo">
+      <!--我的信息-->
+      <div class="detailMsg" v-if="status[0]">
       <el-row>
         <el-col :span="8">
           <el-row class="msg"><div id="title">用户id</div>{{userData.id}}</el-row>
@@ -48,7 +49,22 @@
       </el-row>
       </div>
     </el-row>
+    <!--我的会员-->
+    <div class="detailMsg" v-if="status[1]">
+        <el-row class="msg"><div id="title">会员等级</div>{{userData.level}}</el-row>
+        <el-row class="msg"><div id="title">会员到期时间</div>{{userData.endDate}}<el-tag style="background: rgba(139, 5, 5, 0.4);border-radius: 8px;color: white;margin-left: 15px;font-size: 15px;line-height: 30px;">续费会员</el-tag></el-row>
+        <el-row class="msg"><div id="title">享受课程范围</div>{{userData.lessons}}</el-row>
     </div>
+    <!--课程收藏-->
+    <div class="detailMsg" v-if="status[2]">
+      <el-row>
+        <el-col :span="2">
+
+        </el-col>
+        <el-col :span="8"></el-col>
+      </el-row>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -66,52 +82,26 @@ export default {
         sex:"女",
         sign:"有志者事竟成",
         beginDate:"2019.10.1",
-        endDate:"2020.10.1"
+        endDate:"2020.10.1",
+        level:"vip2",
+        lessons:"免费课程、部分收费课程"
       },
-      isInfo:false,
-      isVip:false,
-      isCollect:false,
-      isNote:false,
-      isTest:false
+      status:[
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
     }
   },
   methods:{
-    changeInfo:function(){
-      this.isVip=false;
-      this.isCollect=false;
-      this.isNote=false;
-      this.isTest=false;
-      this.isInfo=true;
-
-    },
-    changeVip:function(){
-      this.isCollect=false;
-      this.isNote=false;
-      this.isTest=false;
-      this.isInfo=false;
-      this.isVip=true;
-    },
-    changeCol:function(){
-      this.isVip=false;
-      this.isNote=false;
-      this.isTest=false;
-      this.isInfo=false;
-      this.isCollect=true;
-    },
-    changeNote:function(){
-      this.isVip=false;
-      this.isCollect=false;
-      this.isTest=false;
-      this.isInfo=false;
-      this.isNote=true;
-    },
-    changeTest:function(){
-      this.isVip=false;
-      this.isCollect=false;
-      this.isNote=false;
-      this.isTest=false;
-      this.isInfo=false;
-      this.isTest=true;
+    change:function(e){
+      let index = e;
+      for(let i= 0;i<this.status.length;i++){
+        this.status[i]=false
+      }
+      this.status.splice(index,1,true);
     }
   },
   components:{
