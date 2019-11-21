@@ -6,7 +6,10 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Api from './api/index.js';
+import Video from 'video.js'
+import 'video.js/dist/video-js.css'
 Vue.prototype.$api = Api;
+Vue.prototype.$video = Video
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false

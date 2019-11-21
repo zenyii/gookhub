@@ -1,6 +1,62 @@
 <template>
   <div class="hello">
     <Navigator></Navigator>
+    <!--标题栏-->
+    <el-row>
+      <div style="background: rgba(40, 97, 150, 0.4);width: 87%;height: 80px;margin-top: 20px;margin-left: 80px;">
+        <el-col :span="18">
+          <el-row>
+            <el-col><span style="color: red;margin-left: 5px;">{{lesson.level}}</span><span style="color: black;font-size: 30px;margin-left: 10px;">{{lesson.LessonName}}</span></el-col>
+          </el-row>
+          <el-row style="margin-top: 10px;">
+            <span style="color: rgb(29, 86, 84);margin-left: 5px;">{{lesson.class}}</span><span style="color: rgb(29, 86, 84);margin-left: 15px;">{{lesson.date}}</span>
+          </el-row>
+        </el-col>
+        <el-col :span="6">
+          <el-row>
+            <el-col :span="6"><img src="../assets/讲师图标.png" style="width: 60px;margin-top: 10px;"></el-col>
+            <el-col :span="18" style="margin-top: 20px;">
+              <el-row><span style="color: black;">{{lesson.teacher}}</span></el-row>
+              <el-row><span style="color: rgb(73, 72, 72);">{{lesson.introduce}}</span></el-row>
+            </el-col>
+          </el-row>
+        </el-col>
+      </div>
+    </el-row>
+    <el-row style="margin-left: 80px;margin-top: 50px;">
+      <el-col :span="16">
+      <!--播放控件-->
+      <video
+        id="myVideo"
+        class="video-js"
+        >
+        <source
+            :src="CurrentSrc"
+            type="video/mp4"
+        >
+      </video>
+    </el-col>
+    <el-col :span="6">
+      <div class="List">
+      <div style="color: rgb(73, 72, 72);font-size: 25px;font-weight: bold;line-height: 40px;border-bottom: 1px solid white;width: 350px;margin-left: 15px;">视频选集</div>
+      <div style="overflow: auto;height: 500px;margin-top: 20px;">
+      <!--课程列表-->
+      <el-menu
+      default-active="2"
+      class="el-menu-vertical-demo"
+      @open="handleOpen"
+      @close="handleClose"
+      background-color="rgba(139, 189, 221, 0)"
+      text-color="black"
+      active-text-color="#fff"
+      style="margin-bottom:30px;"
+      >
+        <el-menu-item v-for="(list,index1) in lesson.lessonList" :index="'2-'+index1" style="font-size: 15px;height: 30px;line-height: 30px;">P{{index1+1}} {{list.title}}</el-menu-item>
+      </el-menu>
+      </div>
+      </div>
+    </el-col>
+  </el-row>
   </div>
 </template>
 
@@ -10,13 +66,64 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      
+      CurrentSrc:"//vjs.zencdn.net/v/oceans.mp4",
+      lesson:{
+        level:"vip2",
+        LessonName:"零基础入门学习Python",
+        class:"编程>python>初学",
+        date:"2019/10/01",
+        teacher:"刘讲师",
+        introduce:"某高校著名讲师",
+        lessonList:[
+          {title:"简单介绍",src:""},
+          {title:"愉快地开始",src:""},
+          {title:"安装Python",src:""},
+          {title:"第一个Python程序",src:""},
+          {title:"数据类型和变量",src:""},
+          {title:"字符串和编码",src:""},
+          {title:"使用list和tuple",src:""},
+          {title:"条件判断",src:""},
+          {title:"循环",src:""},
+          {title:"使用dict和set",src:""},
+          {title:"函数",src:""},
+          {title:"简单介绍",src:""},
+          {title:"愉快地开始",src:""},
+          {title:"安装Python",src:""},
+          {title:"第一个Python程序",src:""},
+          {title:"数据类型和变量",src:""},
+          {title:"字符串和编码",src:""},
+          {title:"使用list和tuple",src:""},
+          {title:"条件判断",src:""},
+          {title:"循环",src:""},
+          {title:"使用dict和set",src:""},
+          {title:"函数",src:""},
+        ]
+      }
     }
   },
   components:{
     Navigator
   },
+  mounted() { 
+        this.initVideo();
+  },
   methods:{
+    initVideo:function(){
+        //初始化视频方法
+        let myPlayer = this.$video(myVideo, {
+            //确定播放器是否具有用户可以与之交互的控件。没有控件，启动视频播放的唯一方法是使用autoplay属性或通过Player API。
+            controls: true,
+            //自动播放属性,muted:静音播放
+            autoplay: "muted",
+            //建议浏览器是否应在<video>加载元素后立即开始下载视频数据。
+            preload: "auto",
+            //设置视频播放器的显示宽度（以像素为单位）
+            width: "950px",
+            //设置视频播放器的显示高度（以像素为单位）
+            height: "600px"
+        });
+    },
+
     login: function () {
       this.$api.post('/login/login', {
           account:this.account,
@@ -40,6 +147,12 @@ export default {
         }
       });
    },
+   handleOpen:function(){
+
+   },
+   handleClose:function(){
+
+   }
   }
 }
 </script>
@@ -50,8 +163,13 @@ export default {
     color: white;
     width: 100%;
     height: 100%;
-    background-image: url("../assets/back1.jpg");
+    background-image: url("../assets/back.png");
     background-repeat:no-repeat;
     background-size: cover;
+  }
+  .List{
+    background:rgba(139, 189, 221, 0.6);
+    height: 600px;
+    border-radius: 25px;
   }
 </style>

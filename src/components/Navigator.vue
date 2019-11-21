@@ -43,7 +43,7 @@
           <el-menu-item index="4-2" style="text-align: center;" route="/collect">课程收藏</el-menu-item>
           <el-menu-item index="4-3" style="text-align: center;" route="/note">我的笔记</el-menu-item>
           <el-menu-item index="4-4" style="text-align: center;" route="/test">我的考试</el-menu-item>
-          <el-menu-item index="4-5" style="text-align: center;" route="/vip">会员状态</el-menu-item>
+          <el-menu-item index="4-5" style="text-align: center;" route="/lesson">会员状态</el-menu-item>
           <el-menu-item index="4-6" style="text-align: center;" route="/login">退出</el-menu-item>
         </el-submenu>
       </el-menu>
