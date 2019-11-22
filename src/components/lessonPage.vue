@@ -38,7 +38,7 @@
     </el-col>
     <el-col :span="6">
       <div class="List">
-      <div style="color: rgb(73, 72, 72);font-size: 25px;font-weight: bold;line-height: 40px;border-bottom: 1px solid white;width: 350px;margin-left: 15px;">视频选集</div>
+      <div style="color: rgb(73, 72, 72);font-size: 25px;font-weight: bold;line-height: 40px;border-bottom: 1px solid white;width: 350px;margin-left: 15px;">视频选集<span style="float: right;">1/{{this.lesson.lessonList.length}}</span></div>
       <div style="overflow: auto;height: 500px;margin-top: 20px;">
       <!--课程列表-->
       <el-menu

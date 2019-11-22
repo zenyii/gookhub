@@ -40,7 +40,6 @@ export default {
   },
   methods:{
     checkCount:function(){
-      console.log(this.account);
       let e = /^\w{6,12}$/;
       if(this.account==''){
         this.countRight=false;

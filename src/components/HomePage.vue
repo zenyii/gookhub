@@ -1,13 +1,10 @@
 <template>
   <div class="home">
-  <el-row>
-    <Navigator></Navigator>
-  </el-row>
   <el-row :gutter="40" style="margin-left: 10px;">
     <el-col :span="20" style="margin-top: 30px;">                <!--大推荐栏-->
       <el-row :gutter="20">
         <el-col :span="12">   <!--//xxx热门课程-->
-          <el-image :src="src[0]"></el-image>xxx热门课程
+          <el-image :src="src[0]" @click="goLesson"></el-image>xxx热门课程
         </el-col>   
         <el-col :span="12">            <!--//四个小推荐课程-->
           <el-row :gutter="20">
@@ -57,7 +54,6 @@
 </template>
 
 <script>
-import Navigator from './Navigator.vue'
 export default {
   name: 'Home',
   data () {
@@ -103,10 +99,12 @@ export default {
 
   },
   methods:{
-    
+    goLesson:function(){
+      this.$router.push({path:'/lesson'})
+    }
   },
   components:{
-    Navigator
+
   }
 }
 </script>

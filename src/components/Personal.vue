@@ -1,6 +1,5 @@
 <template>
   <div class="personal">
-    <Navigator></Navigator>
     <!--头像栏下部偏移-->
     <div style="margin-left: 50px;">
     <!--头像及昵称-->
@@ -23,11 +22,7 @@
     <div style="margin-left: 100px;">
     <!--信息栏-->
     <el-row style="width:1400px;border-top: 1px solid white;">
-      <el-button :class="[status[0]?'btnAct':'btn']" @click="change(0)">我的信息</el-button>
-      <el-button :class="[status[1]?'btnAct':'btn']" @click="change(1)">我的会员</el-button>
-      <el-button :class="[status[2]?'btnAct':'btn']" @click="change(2)">课程收藏</el-button>
-      <el-button :class="[status[3]?'btnAct':'btn']" @click="change(3)">我的笔记</el-button>
-      <el-button :class="[status[4]?'btnAct':'btn']" @click="change(4)">我的考试</el-button>
+      <el-button v-for="(btn,index) in btnItem" :class="[status[index]?'btnAct':'btn']" @click="change(index)">{{btn}}</el-button>
     </el-row>
     <!--具体信息-->
     <el-row>
@@ -69,7 +64,6 @@
 </template>
 
 <script>
-import Navigator from './Navigator.vue'
 export default {
   name: 'HelloWorld',
   data () {
@@ -93,6 +87,7 @@ export default {
         false,
         false
       ],
+      btnItem:['我的信息','我的会员','课程收藏','我的笔记','我的考试'],
     }
   },
   methods:{
@@ -105,7 +100,7 @@ export default {
     }
   },
   components:{
-    Navigator
+    
   }
 }
 </script>
