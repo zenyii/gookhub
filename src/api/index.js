@@ -3,9 +3,9 @@ import config from '../config'
 
 let http = axios.create({
     baseURL: config.baseURL,
-    withCredentials: false,
+    withCredentials: true,
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
     },
     transformRequest: [function (data) {
       let newData = '';

@@ -110,7 +110,7 @@ export default {
       if(index==5){
         this.$router.push('/login')
       }else{
-        this.$router.push({path:'/index',query:{currCom:1,itemIndex:index}})
+        this.$router.push({path:'/personal',query:{itemIndex:index}})
       }
     }
   }

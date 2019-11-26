@@ -1,19 +1,20 @@
 <template>
   <div class="home">
+  <Navigator></Navigator>
   <el-row :gutter="40" style="margin-left: 10px;">
     <el-col :span="20" style="margin-top: 30px;">                <!--大推荐栏-->
       <el-row :gutter="20">
         <el-col :span="12">   <!--//xxx热门课程-->
-          <el-image :src="src[0]" @click="goLesson"></el-image>xxx热门课程
+          <el-image :src="freeLesson[0].image" @click="goLesson"></el-image>xxx热门课程
         </el-col>   
         <el-col :span="12">            <!--//四个小推荐课程-->
           <el-row :gutter="20">
-            <el-col :span="12"><el-image :src="src[1]"></el-image>课程1</el-col>
-            <el-col :span="12"><el-image :src="src[2]"></el-image>课程2</el-col>
+            <el-col :span="12"><el-image :src="freeLesson[1].image"></el-image>课程1</el-col>
+            <el-col :span="12"><el-image :src="freeLesson[2].image"></el-image>课程2</el-col>
           </el-row>
           <el-row :gutter="20">
-              <el-col :span="12"><el-image :src="src[3]"></el-image>课程3</el-col>
-              <el-col :span="12"><el-image :src="src[4]"></el-image>课程4</el-col>
+              <el-col :span="12"><el-image :src="freeLesson[3].image"></el-image>课程3</el-col>
+              <el-col :span="12"><el-image :src="freeLesson[4].image"></el-image>课程4</el-col>
           </el-row>
         </el-col>
       </el-row>
@@ -54,16 +55,18 @@
 </template>
 
 <script>
+import axios from 'axios'
+import Navigator from './Navigator.vue'
 export default {
   name: 'Home',
   data () {
     return {
-      src:[
-        'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
-        'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
-        'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
-        'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
-        'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
+      freeLesson:[
+        {image:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
+        {image:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
+        {image:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
+        {image:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
+        {image:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'},
       ],
       test:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
       liveLessons:[
@@ -81,8 +84,9 @@ export default {
       ]
     }
   },
-  beforeCreate:function(){
-    this.$api.get('/get/all_lesson', {}, response => {
+  created:function(){
+    this.init();
+    /*this.$api.get('/get/free_lesson', {}, response => {
         if (response.status >= 200 && response.status < 300) {
           console.log(response.data);
         } else {
@@ -95,16 +99,38 @@ export default {
         } else {
           console.log(response.message);
         }
-      });
+      });*/
 
   },
   methods:{
     goLesson:function(){
       this.$router.push({path:'/lesson'})
+    },
+    getFree:function(){
+      return axios.get('https://api.gookhub.cn/index/get/free_lesson')
+    },
+    getNews:function(){
+      return axios.get('https://api.gookhub.cn/index/get/all_news')
+    },
+    getAll:function(){
+      return axios.get('https://api.gookhub.cn/index/get/all_lesson')
+    },
+    init:function(){
+     /* axios.all([this.getFree(),this.getNews(),this.getAll()])
+        .then(axios.spread(function(acct,perms,last){
+          console.log("acct:",acct);
+          console.log(acct.data.data)
+          console.log(this.freeLesson)
+          this.freeLesson = acct.data.data
+          console.log(this.freeLesson)
+          console.log("perms:",perms);
+          console.log("last:",last)
+        }))*/
+        
     }
   },
   components:{
-
+    Navigator
   }
 }
 </script>

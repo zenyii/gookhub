@@ -1,5 +1,6 @@
 <template>
   <div class="personal">
+    <Navigator></Navigator>
     <!--头像栏下部偏移-->
     <div style="margin-left: 50px;">
     <!--头像及昵称-->
@@ -64,6 +65,7 @@
 </template>
 
 <script>
+import Navigator from './Navigator.vue'
 export default {
   name: 'HelloWorld',
   data () {
@@ -100,7 +102,7 @@ export default {
     }
   },
   components:{
-    
+    Navigator
   }
 }
 </script>
