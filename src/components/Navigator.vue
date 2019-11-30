@@ -2,7 +2,6 @@
   <div class="home">
       <el-row>             <!--导航栏-->
         <el-menu
-        router
         :default-active="activeIndex"
         mode="horizontal"
         class="el-menu-demo"
@@ -10,7 +9,7 @@
         background-color="black"
         text-color="#fff"
         active-text-color="#fff">
-        <el-menu-item index="1" style="font-size: 25px;" route="/index"><img src="../assets/logo.png" style="width: 40px; margin: 10px;">在线学习网站</el-menu-item>
+        <el-menu-item index="1" style="font-size: 25px;" @click="change(6)"><img src="../assets/logo.png" style="width: 40px; margin: 10px;">在线学习网站</el-menu-item>
         <!--课程分类栏-->
         <el-submenu index="2" style="margin-left: 50px;">
             <template slot="title">课程分类</template>
@@ -38,7 +37,7 @@
         </div>
         <!--头像及昵称栏-->
         <el-submenu index="4" style="float: right;width: 200px;">
-          <template slot="title"><img src="../assets/女用户.png" style="width: 30px;">用户/管理员</template>
+          <template slot="title"><img :src="userImage" style="width: 30px;border-radius: 50%;margin-right: 10px;">{{userName}}</template>
           <el-menu-item v-for="(item,index3) in menuItem" :index="'4-'+index3" style="text-align: center;" @click="change(index3)">{{item}}</el-menu-item>
         </el-submenu>
       </el-menu>
@@ -102,6 +101,10 @@ export default {
       ]
     }
   },
+  props:[
+    'userName',
+    'userImage'
+  ],
   methods:{
     handleSelect(key,keyPath){
       
@@ -109,8 +112,12 @@ export default {
     change(index){
       if(index==5){
         this.$router.push('/login')
-      }else{
-        this.$router.push({path:'/personal',query:{itemIndex:index}})
+      }
+      else if(index==6){
+        this.$router.push({path:'/index',query:{nowPage:0,itemIndex:index}})
+      }
+      else{
+        this.$router.push({path:'/index',query:{nowPage:1,itemIndex:index}})
       }
     }
   }

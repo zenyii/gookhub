@@ -1,6 +1,6 @@
 <template>
   <div class="personal">
-    <Navigator></Navigator>
+    <!--<Navigator></Navigator>-->
     <!--头像栏下部偏移-->
     <div style="margin-left: 50px;">
     <!--头像及昵称-->
@@ -31,25 +31,25 @@
       <div class="detailMsg" v-if="status[0]">
       <el-row>
         <el-col :span="8">
-          <el-row class="msg"><div id="title">用户id</div>{{userData.id}}</el-row>
-          <el-row class="msg"><div id="title">昵称</div><div style="border-radius: 5px;background: rgba(255, 255, 255, 0.6);width: 150px;float: left;">{{userData.nickName}}</div></el-row>
-          <el-row class="msg"><div id="title">性别</div>{{userData.sex}}</el-row>
-          <el-row class="msg"><div id="title">注册日期</div>{{userData.beginDate}}</el-row>
-          <el-row class="msg"><div id="title">会员到期时间</div>{{userData.endDate}}</el-row>
+          <el-row class="msg"><div id="title">用户id</div>{{userMsg.id}}</el-row>
+          <el-row class="msg"><div id="title">昵称</div><div style="border-radius: 5px;background: rgba(255, 255, 255, 0.6);width: 150px;float: left;">{{userMsg.name}}</div></el-row>
+          <el-row class="msg"><div id="title">性别</div>{{userMsg.userSex}}</el-row>
+          <el-row class="msg"><div id="title">注册日期</div>{{userMsg.beginDate}}</el-row>
+          <el-row class="msg"><div id="title">会员到期时间</div>{{userMsg.vipEndTime}}</el-row>
         </el-col>
         <el-col :span="16">
-          <el-row class="msg"><div id="title">电子邮箱</div><div style="border-radius: 5px;background: rgba(255, 255, 255, 0.6);width: 200px;float: left;">{{userData.eMail}}</div></el-row>
-          <el-row class="msg"><div id="title">电话</div><div style="border-radius: 5px;background: rgba(255, 255, 255, 0.6);width: 150px;float: left;">{{userData.Tel}}</div></el-row>
-          <el-row class="msg"><div id="title">我的签名</div><div style="border-radius: 5px;background: rgba(255, 255, 255, 0.6);width: 300px;float: left;height: 100px;">{{userData.sign}}</div></el-row>
+          <el-row class="msg"><div id="title">电子邮箱</div><div style="border-radius: 5px;background: rgba(255, 255, 255, 0.6);width: 200px;float: left;">{{userMsg.userEmail}}</div></el-row>
+          <el-row class="msg"><div id="title">电话</div><div style="border-radius: 5px;background: rgba(255, 255, 255, 0.6);width: 150px;float: left;">{{userMsg.userTel}}</div></el-row>
+          <el-row class="msg"><div id="title">我的签名</div><div style="border-radius: 5px;background: rgba(255, 255, 255, 0.6);width: 300px;float: left;height: 100px;">{{userMsg.userIntroduce}}</div></el-row>
         </el-col>
       </el-row>
       </div>
     </el-row>
     <!--我的会员-->
     <div class="detailMsg" v-if="status[1]">
-        <el-row class="msg"><div id="title">会员等级</div>{{userData.level}}</el-row>
-        <el-row class="msg"><div id="title">会员到期时间</div>{{userData.endDate}}<el-tag style="background: rgba(139, 5, 5, 0.4);border-radius: 8px;color: white;margin-left: 15px;font-size: 15px;line-height: 30px;">续费会员</el-tag></el-row>
-        <el-row class="msg"><div id="title">享受课程范围</div>{{userData.lessons}}</el-row>
+        <el-row class="msg"><div id="title">会员等级</div>{{userMsg.userVipMsg}}</el-row>
+        <el-row class="msg"><div id="title">会员到期时间</div>{{userMsg.vipEndTime}}<el-tag style="background: rgba(139, 5, 5, 0.4);border-radius: 8px;color: white;margin-left: 15px;font-size: 15px;line-height: 30px;">续费会员</el-tag></el-row>
+        <el-row class="msg"><div id="title">享受课程范围</div>{{userMsg.lessons}}</el-row>
     </div>
     <!--课程收藏-->
     <div class="detailMsg" v-if="status[2]">
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import Navigator from './Navigator.vue'
+//import Navigator from './Navigator.vue'
 export default {
   name: 'HelloWorld',
   data () {
@@ -92,6 +92,9 @@ export default {
       btnItem:['我的信息','我的会员','课程收藏','我的笔记','我的考试'],
     }
   },
+  props:[
+    'userMsg'
+  ],
   methods:{
     change:function(e){
       let index = e;
@@ -102,7 +105,7 @@ export default {
     }
   },
   components:{
-    Navigator
+    //Navigator
   }
 }
 </script>
