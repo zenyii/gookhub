@@ -1,22 +1,21 @@
 <template>
   <div class="hello">
-    <Navigator></Navigator>
     <!--标题栏-->
     <el-row>
       <div style="background: rgba(40, 97, 150, 0.4);width: 87%;height: 80px;margin-top: 20px;margin-left: 80px;">
         <el-col :span="18">
           <el-row>
-            <el-col><span style="color: red;margin-left: 5px;">{{lesson.level}}</span><span style="color: black;font-size: 30px;margin-left: 10px;">{{lesson.LessonName}}</span></el-col>
+            <el-col><span style="color: red;margin-left: 5px;">{{lesson.level}}</span><span style="color: black;font-size: 30px;margin-left: 10px;">{{lesson.lesson_name}}</span></el-col>
           </el-row>
           <el-row style="margin-top: 10px;">
-            <span style="color: rgb(29, 86, 84);margin-left: 5px;">{{lesson.class}}</span><span style="color: rgb(29, 86, 84);margin-left: 15px;">{{lesson.date}}</span>
+            <span style="color: rgb(29, 86, 84);margin-left: 5px;">{{lesson.label}}</span><span style="color: rgb(29, 86, 84);margin-left: 15px;">{{lesson.publishTime}}</span>
           </el-row>
         </el-col>
         <el-col :span="6">
           <el-row>
             <el-col :span="6"><img src="../assets/讲师图标.png" style="width: 60px;margin-top: 10px;"></el-col>
             <el-col :span="18" style="margin-top: 20px;">
-              <el-row><span style="color: black;">{{lesson.teacher}}</span></el-row>
+              <el-row><span style="color: black;">{{lesson.speaker}}</span></el-row>
               <el-row><span style="color: rgb(73, 72, 72);">{{lesson.introduce}}</span></el-row>
             </el-col>
           </el-row>
@@ -25,21 +24,12 @@
     </el-row>
     <el-row style="margin-left: 80px;margin-top: 50px;">
       <el-col :span="16">
-      <!--播放控件-->
-      <video
-        id="myVideo"
-        class="video-js"
-        >
-        <source
-            :src="CurrentSrc"
-            type="video/mp4"
-        >
-      </video>
-    </el-col>
+      <iframe height=600 style="width: 95%;" src='http://player.youku.com/embed/XNDQyMTE2MjUyOA==' frameborder=0></iframe>
+      </el-col>
     <el-col :span="6">
       <div class="List">
-      <div style="color: rgb(73, 72, 72);font-size: 25px;font-weight: bold;line-height: 40px;border-bottom: 1px solid white;width: 350px;margin-left: 15px;">视频选集<span style="float: right;">1/{{this.lesson.lessonList.length}}</span></div>
-      <div style="overflow: auto;height: 500px;margin-top: 20px;">
+      <!--<div style="color: rgb(73, 72, 72);font-size: 25px;font-weight: bold;line-height: 40px;border-bottom: 1px solid white;width: 350px;margin-left: 15px;">视频选集<span style="float: right;">1/{{this.lesson.lessonList.length}}</span></div>-->
+      <div style="overflow: auto;height: 500px;">
       <!--课程列表-->
       <el-menu
       default-active="2"
@@ -61,7 +51,6 @@
 </template>
 
 <script>
-import Navigator from './Navigator.vue'
 export default {
   name: 'HelloWorld',
   data () {
@@ -74,6 +63,7 @@ export default {
         date:"2019/10/01",
         teacher:"刘讲师",
         introduce:"某高校著名讲师",
+        sourceUrl:'//vjs.zencdn.net/v/oceans.mp4',
         lessonList:[
           {title:"简单介绍",src:""},
           {title:"愉快地开始",src:""},
@@ -102,51 +92,24 @@ export default {
     }
   },
   components:{
-    Navigator
+    
+  },
+  beforeCreate(){
+    let id = this.$route.query.id;
+    this.$api.get('/get/one_lesson',{id:id},res=>{
+      if (res.status >= 200 && res.status < 300) {
+        console.log(res)
+        this.lesson = res.data.data
+        console.log(this.lesson)
+      }else {
+        console.log(res.message);
+      }
+    })
   },
   mounted() { 
-        this.initVideo();
+    
   },
   methods:{
-    initVideo:function(){
-        //初始化视频方法
-        let myPlayer = this.$video(myVideo, {
-            //确定播放器是否具有用户可以与之交互的控件。没有控件，启动视频播放的唯一方法是使用autoplay属性或通过Player API。
-            controls: true,
-            //自动播放属性,muted:静音播放
-            autoplay: "muted",
-            //建议浏览器是否应在<video>加载元素后立即开始下载视频数据。
-            preload: "auto",
-            //设置视频播放器的显示宽度（以像素为单位）
-            width: "950px",
-            //设置视频播放器的显示高度（以像素为单位）
-            height: "600px"
-        });
-    },
-
-    login: function () {
-      this.$api.post('/login/login', {
-          account:this.account,
-          password:this.password,
-          type:"user"
-        }, response => {
-        if (response.status >= 200 && response.status < 300) {
-          console.log(response.data);
-          if(response.data.code==0){
-            this.$message({
-              message:response.data.Msg,
-              type:'success'
-            })
-            this.$router.push({path:'/index'})
-          }
-          else{
-            this.$message.error(response.data.Msg)
-          }
-        } else {
-          console.log(response.message);
-        }
-      });
-   },
    handleOpen:function(){
 
    },

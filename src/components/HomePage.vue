@@ -3,19 +3,18 @@
  <!-- <Navigator></Navigator>-->
   <el-row :gutter="40" style="margin-left: 10px;">
     <el-col :span="20" style="margin-top: 30px;">                <!--大推荐栏-->
-      <el-row style="margin-bottom:20px"><div style="background: rgba(2, 18, 34, 0.4);width: 10%;height: 30px;line-height: 30px;text-align: center;">免费课程区</div></el-row>
       <el-row>
         <el-col :span="12">   <!--//xxx热门课程-->
-          <div style="overflow: hidden;width: 80%;height: 80%;"><el-image :src="freeLesson[0].image" @click="goLesson" class="imgAnima"></el-image></div><div>{{freeLesson[0].lesson_name}}</div>
+          <div style="overflow: hidden;width: 80%;height: 80%;"><el-image :src="freeLesson[0].image" @click="goLesson(freeLesson[0].id)" class="imgAnima"></el-image></div><div>{{freeLesson[0].lesson_name}}</div>
         </el-col>      
         <el-col :span="12" style="margin-left: -70px;">            <!--//四个小推荐课程-->
           <el-row :gutter="20">
-            <el-col :span="12"><div class="imgAnima" style="overflow: hidden;width: 100%;height: 100%;"><el-image :src="freeLesson[1].image" ></el-image></div>{{freeLesson[1].lesson_name}}</el-col>
-            <el-col :span="12"><div style="overflow: hidden;width: 100%;height: 100%;"><el-image :src="freeLesson[2].image" class="imgAnima"></el-image></div>{{freeLesson[2].lesson_name}}</el-col>
+            <el-col :span="12"><div style="overflow: hidden;width: 100%;height: 100%;"><el-image @click="goLesson(freeLesson[1].id)" :src="freeLesson[1].image" class="imgAnima"></el-image></div>{{freeLesson[1].lesson_name}}</el-col>
+            <el-col :span="12"><div style="overflow: hidden;width: 100%;height: 100%;"><el-image @click="goLesson(freeLesson[2].id)" :src="freeLesson[2].image" class="imgAnima"></el-image></div>{{freeLesson[2].lesson_name}}</el-col>
           </el-row>
           <el-row :gutter="20">
-            <el-col :span="12"><div style="overflow: hidden;width: 100%;height: 100%;"><el-image :src="freeLesson[3].image" class="imgAnima"></el-image></div>{{freeLesson[3].lesson_name}}</el-col>
-            <el-col :span="12"><div style="overflow: hidden;width: 100%;height: 100%;"><el-image :src="freeLesson[4].image" class="imgAnima"></el-image></div>{{freeLesson[4].lesson_name}}</el-col>
+            <el-col :span="12"><div style="overflow: hidden;width: 100%;height: 100%;"><el-image @click="goLesson(freeLesson[3].id)" :src="freeLesson[3].image" class="imgAnima"></el-image></div>{{freeLesson[3].lesson_name}}</el-col>
+            <el-col :span="12"><div style="overflow: hidden;width: 100%;height: 100%;"><el-image @click="goLesson(freeLesson[4].id)" :src="freeLesson[4].image" class="imgAnima"></el-image></div>{{freeLesson[4].lesson_name}}</el-col>
           </el-row>
         </el-col>
       </el-row>
@@ -48,7 +47,7 @@
     <el-col :span="4" style="color: black;height:1000px;border-left: 2px solid white;margin-top: 20px;">     <!--新闻排行-->
       <h1 style="color: rgb(24, 15, 66);">新闻排行</h1> 
       <span>最新</span> <span style="color: rgb(239, 37, 66);">最热</span>
-      <h6 v-for='(newItem,index) in news':key="index"><span style="color: rgb(239, 37, 66);font-size: 15px;margin-right: 5px;line-height: 15px;" v-if="index<3">{{index+1}}</span><span style="font-size: 15px;" v-if="index>2">{{index+1}}</span> {{newItem.title}}</h6>
+      <div v-for='(newItem,index) in news':key="index" style="font-size: 12px;margin-bottom: 5px;"><span style="color: rgb(239, 37, 66);font-size: 15px;margin-right: 5px;" v-if="index<3">{{index+1}}</span><span style="font-size: 15px;margin-right: 5px;" v-if="index>2">{{index+1}}</span> {{newItem.title}}</div>
       <label style="color: rgb(239, 37, 66);font-size: 13px;">查看更多>>></label>
     </el-col>     
   </el-row>
@@ -77,21 +76,12 @@ export default {
     this.init();
   },
   methods:{
-    goLesson:function(){
-      this.$router.push({path:'/lesson'})
-    },
-    getFree:function(){
-      return this.$api.get('https://api.gookhub.cn/index/get/free_lesson')
-    },
-    getNews:function(){
-      return this.$api.get('https://api.gookhub.cn/index/get/all_news')
-    },
-    getAll:function(){
-      return this.$api.get('https://api.gookhub.cn/index/get/all_lesson')
+    goLesson:function(id){
+      this.$router.push({path:'/index',query:{id:id,nowPage:2}})
     },
     init:function(){
       let getFree = new Promise((resolve,reject)=>{
-        this.$api.get('https://api.gookhub.cn/index/get/free_lesson',{},res=>{
+        this.$api.get('/get/free_lesson',{},res=>{
           if (res.status >= 200 && res.status < 300) {
             resolve(res)
           }else{
@@ -100,7 +90,7 @@ export default {
         })
       }) 
       let getNews = new Promise((resolve,reject)=>{
-        this.$api.get('https://api.gookhub.cn/index/get/all_news',{},res=>{
+        this.$api.get('/get/all_news',{},res=>{
           if (res.status >= 200 && res.status < 300) {
             resolve(res)
           }else{
@@ -109,7 +99,7 @@ export default {
         })
       }) 
       let getAll = new Promise((resolve,reject)=>{
-        this.$api.get('https://api.gookhub.cn/index/get/all_lesson',{},res=>{
+        this.$api.get('/get/all_lesson',{},res=>{
           if (res.status >= 200 && res.status < 300) {
             resolve(res)
           }else{

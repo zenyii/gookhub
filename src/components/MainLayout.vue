@@ -9,12 +9,13 @@
 import Personal from './Personal.vue'
 import Homepage from './HomePage.vue'
 import Navigator from './Navigator.vue'
+import LessonPage from './LessonPage.vue'
 export default {
   name: 'HelloWorld',
   data () {
     return {
       current:0,
-      comList:['Homepage','Personal'],                
+      comList:['Homepage','Personal','LessonPage'],                
       menuItem:['个人信息','课程收藏','我的笔记','我的考试','会员状态','退出'],
       input:'',
       activeIndex:'',
@@ -89,7 +90,8 @@ export default {
   components:{
     Personal,
     Homepage,
-    Navigator
+    Navigator,
+    LessonPage
   },
   methods:{
     handleSelect(key,keyPath){
