@@ -1,9 +1,13 @@
 import axios from 'axios'
 import config from '../config'
 
+axios.interceptors.request.use(function(config){
+  
+})
+
 let http = axios.create({
     baseURL: config.baseURL,
-    withCredentials: true,
+    withCredentials: false,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
     },

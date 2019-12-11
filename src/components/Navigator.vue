@@ -6,7 +6,7 @@
         mode="horizontal"
         class="el-menu-demo"
         @select="handleSelect"
-        background-color="black"
+        background-color="rgb(26,26,53)"
         text-color="#fff"
         active-text-color="#fff">
         <el-menu-item index="1" style="font-size: 25px;" @click="change(6)"><img src="../assets/logo.png" style="width: 40px; margin: 10px;">在线学习网站</el-menu-item>
@@ -33,7 +33,7 @@
         <!--搜索栏-->
         <div class="search">  
             <el-input v-model="input" style="width: 250px;position: relative;top: -5px;"></el-input>
-            <img src="../assets/搜索.jpg" style="width: 40px;height: 40px;position: relative;top: 10px;margin-left: 10px;">
+            <img src="../assets/搜索.jpg" @click="change(7)" style="width: 40px;height: 40px;position: relative;top: 10px;margin-left: 10px;">
         </div>
         <!--头像及昵称栏-->
         <el-submenu index="4" style="float: right;width: 200px;">
@@ -115,6 +115,9 @@ export default {
       }
       else if(index==6){
         this.$router.push({path:'/index',query:{nowPage:0,itemIndex:index}})
+      }
+      else if(index==7){
+        this.$router.push({path:'/index',query:{nowPage:3,itemIndex:index}})
       }
       else{
         this.$router.push({path:'/index',query:{nowPage:1,itemIndex:index}})

@@ -126,7 +126,7 @@ export default {
 <style scoped>
   .home{
     color: white;
-    background-image: url("../assets/back.png");
+    background-image: url("../assets/背景.png");
     background-repeat:no-repeat;
     background-size: cover;   
   }

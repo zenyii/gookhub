@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import Cookie from 'js-cookie'
 export default {
   name: 'HelloWorld',
   data () {
@@ -69,8 +68,6 @@ export default {
               message:response.data.Msg,
               type:'success'
             })
-            Cookie.set('session_id',response.data.session_id,{expires:7})
-            Cookie.get('session_id')
             let userData = response.data.data
             //console.log(userData)
             this.$router.push({name: 'HomePage',params:{ userData:userData}})

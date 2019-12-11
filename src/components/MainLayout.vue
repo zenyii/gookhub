@@ -10,62 +10,17 @@ import Personal from './Personal.vue'
 import Homepage from './HomePage.vue'
 import Navigator from './Navigator.vue'
 import LessonPage from './LessonPage.vue'
+import SearchPage from './SearchPage.vue'
 export default {
   name: 'HelloWorld',
   data () {
     return {
       current:0,
-      comList:['Homepage','Personal','LessonPage'],                
+      comList:['Homepage','Personal','LessonPage','SearchPage'],                
       menuItem:['个人信息','课程收藏','我的笔记','我的考试','会员状态','退出'],
       input:'',
       activeIndex:'',
       userData:{},
-      lessons:[
-        {
-          class:"专区一",
-          lesson:[
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-          ]
-        },
-        {
-          class:"专区二",
-          lesson:[
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-          ]
-        },
-        {
-          class:"专区三",
-          lesson:[
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-          ]
-        },
-        {
-          class:"专区四",
-          lesson:[
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-            {front:"https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",num:102,time:79},
-          ]
-        }
-      ]
     }
   },
   watch:{
@@ -91,21 +46,12 @@ export default {
     Personal,
     Homepage,
     Navigator,
-    LessonPage
+    LessonPage,
+    SearchPage
   },
   methods:{
     handleSelect(key,keyPath){
       
-    },
-    change(index){
-      if(index==5){
-        this.$router.push('/login')
-      }else{
-        this.current=1
-      }
-    },
-    goHome:function(){
-        this.current=0
     },
     init:function(){
         this.comList=this.comList.slice()
