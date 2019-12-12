@@ -4,7 +4,7 @@
         <el-input v-model="content" style="width: 500px;margin-top: 30px;"><el-button slot="append" icon="el-icon-search" @click="search">搜索</el-button></el-input>
     </el-row>
     <el-row>
-        <el-col :span="6">
+        <el-col :span="6" style="border-right: 1px solid white;">
             <div v-for="sort in sorts">{{sort}}</div>
             <div v-for="level in levels">{{level}}</div>
         </el-col>
@@ -22,10 +22,24 @@
 export default {
   name: 'HelloWorld',
   data () {
-    return {
+    return {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
       sorts:["相关","最多播放","最多收藏"],
       levels:["免费","白银会员","黄金会员","钻石会员","全部"],
-      lessons:[],
+      lessons:[
+        {
+          gmt_create: "2019-11-23 11:18:21",
+          gmt_modified: "2019-11-23 11:18:21",
+          id: 8,
+          image: "https://api.gookhub.cn/static/images/lesson/mysql.jpg",
+          label: "数据库,mysql",
+          lesson_name: "mysql 开发入门",
+          lesson_scale: "0",
+          publishTime: "2019-11-23 11:18:21",
+          sourceUrl: "https://cloud.tencent.com/edu/learning/course-1491",
+          speaker: "杨老师",
+          timespan: "39课时"
+        },
+      ],
       content:""
     }
   },
