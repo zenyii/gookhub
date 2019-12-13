@@ -132,7 +132,6 @@ export default {
   }
   .imgAnima{
     width: 100%;
-    object-fit:cover;
     cursor: pointer;
     transition: all 1s;
     -webkit-transition: all 1s;
