@@ -117,7 +117,8 @@ export default {
         this.$router.push({path:'/index',query:{nowPage:0,itemIndex:index}})
       }
       else if(index==7){
-        this.$router.push({path:'/index',query:{nowPage:3,itemIndex:index}})
+        this.$router.push({path:'/index',query:{nowPage:3,itemIndex:index,content:this.input}})
+        this.input='';
       }
       else{
         this.$router.push({path:'/index',query:{nowPage:1,itemIndex:index}})

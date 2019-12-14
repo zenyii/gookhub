@@ -108,7 +108,7 @@ export default {
         })
       })
       Promise.all([getFree,getNews,getAll]).then(result=>{
-          console.log(result)
+         //console.log(result)
           this.freeLesson = result[0].data.data
           this.news = result[1].data.data
       }).catch((error)=>{

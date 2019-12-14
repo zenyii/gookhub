@@ -5,8 +5,10 @@
     </el-row>
     <el-row style="margin-top: 50px;">
         <el-col :span="5" style="border-right: 1px solid white;">
-            <el-row v-for="sort in sorts">{{sort}}</el-row>
-            <el-row v-for="level in levels">{{level}}</el-row>
+            <el-tabs :tab-position="left" style="height: 200px;">
+                <el-tab-pane v-for="sort in sorts" label="sort" ></el-tab-pane>
+                <el-tab-pane v-for="level in levels" label="level"></el-tab-pane>
+              </el-tabs>
         </el-col>
         <el-col :span="18" style="margin-left: 50px; ">
           <el-row v-for="lesson in lessons" style="margin-bottom: 20px;">
@@ -35,23 +37,66 @@ export default {
     return {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
       sorts:["相关","最多播放","最多收藏"],
       levels:["免费","白银会员","黄金会员","钻石会员","全部"],
-      lessons:[],
+      lessons:[
+        {
+          gmt_create: "2019-11-23 11:18:21",
+          gmt_modified: "2019-11-23 11:18:21",
+          id: 8,
+          image: "https://api.gookhub.cn/static/images/lesson/mysql.jpg",
+          label: "数据库,mysql",
+          lesson_name: "mysql 开发入门",
+          lesson_scale: "0",
+          publishTime: "2019-11-23 11:18:21",
+          sourceUrl: "https://cloud.tencent.com/edu/learning/course-1491",
+          speaker: "杨老师",
+          timespan: "39课时"
+        },
+        {
+          gmt_create: "2019-11-23 11:18:21",
+          gmt_modified: "2019-11-23 11:18:21",
+          id: 8,
+          image: "https://api.gookhub.cn/static/images/lesson/mysql.jpg",
+          label: "数据库,mysql",
+          lesson_name: "mysql 开发入门",
+          lesson_scale: "0",
+          publishTime: "2019-11-23 11:18:21",
+          sourceUrl: "https://cloud.tencent.com/edu/learning/course-1491",
+          speaker: "杨老师",
+          timespan: "39课时"
+        }
+      ],
       content:""
     }
   }, props:[
     'userMsg'
   ],
+  created:function(){
+    this.content= this.$route.query.content;
+    console.log(this.$route.query)
+    console.log(this.content)
+    this.$api.get('/get/query_lesson',{keyword:this.content},res=>{
+      if (res.status >= 200 && res.status < 300) {
+      console.log(res)
+      if(res.data.code==1){
+
+      }
+      this.lessons=res.data.data
+      
+      }else {
+      console.log(res.Msg);
+      }
+    })
+  },
   methods:{
     search:function(){
-        this.$api.get('/get/query_lesson',{keyword:this.content},res=>{
-            if (res.status >= 200 && res.status < 300) {
-            console.log(res)
-            this.lessons=res.data.data
-           
-            }else {
-            console.log(res.Msg);
-            }
-        })
+      this.$api.get('/get/query_lesson',{keyword:this.content},res=>{
+        if (res.status >= 200 && res.status < 300) {
+        console.log(res)
+        this.lessons=res.data.data
+        }else {
+        console.log(res.Msg);
+        }
+      })
     },
     goLesson:function(id){
       console.log(id);
