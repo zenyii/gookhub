@@ -4,11 +4,13 @@
         <el-input v-model="content" style="width: 500px;margin-top: 30px;"><el-button slot="append" icon="el-icon-search" @click="search">搜索</el-button></el-input>
     </el-row>
     <el-row style="margin-top: 50px;">
-        <el-col :span="5" style="border-right: 1px solid white;">
-            <el-tabs :tab-position="left" style="height: 200px;">
-                <el-tab-pane v-for="sort in sorts" label="sort" ></el-tab-pane>
-                <el-tab-pane v-for="level in levels" label="level"></el-tab-pane>
+        <el-col :span="5">
+            <el-tabs tab-position="left" style="margin-left: 150px;">
+                <el-tab-pane v-for="sort in sorts" :label="sort" ></el-tab-pane>
               </el-tabs>
+              <el-tabs tab-position="left" style="margin-left: 150px;margin-top: 50px;">
+                  <el-tab-pane v-for="level in levels" :label="level"></el-tab-pane>
+                </el-tabs>
         </el-col>
         <el-col :span="18" style="margin-left: 50px; ">
           <el-row v-for="lesson in lessons" style="margin-bottom: 20px;">
@@ -37,34 +39,6 @@ export default {
     return {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
       sorts:["相关","最多播放","最多收藏"],
       levels:["免费","白银会员","黄金会员","钻石会员","全部"],
-      lessons:[
-        {
-          gmt_create: "2019-11-23 11:18:21",
-          gmt_modified: "2019-11-23 11:18:21",
-          id: 8,
-          image: "https://api.gookhub.cn/static/images/lesson/mysql.jpg",
-          label: "数据库,mysql",
-          lesson_name: "mysql 开发入门",
-          lesson_scale: "0",
-          publishTime: "2019-11-23 11:18:21",
-          sourceUrl: "https://cloud.tencent.com/edu/learning/course-1491",
-          speaker: "杨老师",
-          timespan: "39课时"
-        },
-        {
-          gmt_create: "2019-11-23 11:18:21",
-          gmt_modified: "2019-11-23 11:18:21",
-          id: 8,
-          image: "https://api.gookhub.cn/static/images/lesson/mysql.jpg",
-          label: "数据库,mysql",
-          lesson_name: "mysql 开发入门",
-          lesson_scale: "0",
-          publishTime: "2019-11-23 11:18:21",
-          sourceUrl: "https://cloud.tencent.com/edu/learning/course-1491",
-          speaker: "杨老师",
-          timespan: "39课时"
-        }
-      ],
       content:""
     }
   }, props:[

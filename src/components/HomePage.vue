@@ -47,7 +47,10 @@
     <el-col :span="4" style="color: black;height:1000px;border-left: 2px solid white;margin-top: 20px;">     <!--新闻排行-->
       <h1 style="color: rgb(24, 15, 66);">新闻排行</h1> 
       <span>最新</span> <span style="color: rgb(239, 37, 66);">最热</span>
-      <div v-for='(newItem,index) in news':key="index" style="font-size: 12px;margin-bottom: 5px;"><span style="color: rgb(239, 37, 66);font-size: 15px;margin-right: 5px;" v-if="index<3">{{index+1}}</span><span style="font-size: 15px;margin-right: 5px;" v-if="index>2">{{index+1}}</span> {{newItem.title}}</div>
+      <el-link v-for='(newItem,index) in news':key="index" :underline="false" @click="goNew(newItem.id)" style="font-size: 12px;margin-bottom: 5px;display: block;">
+        <span style="color: rgb(239, 37, 66);font-size: 15px;margin-right: 5px;" v-if="index<3">{{index+1}}</span>
+        <span style="font-size: 15px;margin-right: 5px;" v-if="index>2">{{index+1}}</span> {{newItem.title}}
+      </el-link>
       <label style="color: rgb(239, 37, 66);font-size: 13px;">查看更多>>></label>
     </el-col>     
   </el-row>
@@ -114,6 +117,9 @@ export default {
       }).catch((error)=>{
         console.log(error)
       })
+    },
+    goNew:function(id){
+      this.$router.push({path:'/index',query:{nowPage:4,newId:id}})
     }
   },
   components:{

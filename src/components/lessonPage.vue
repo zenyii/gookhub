@@ -24,7 +24,7 @@
     </el-row>
     <el-row style="margin-left: 80px;margin-top: 50px;">
       <el-col :span="16">
-      <!--<iframe height=600 style="width: 95%;" src='http://player.youku.com/embed/XNDQyMTE2MjUyOA==' frameborder=0></iframe>-->
+      <iframe height=600 style="width: 95%;" src='http://player.bilibili.com/player.html?aid=62596514&cid=108772384&page=1' frameborder=0></iframe>
       </el-col>
     <el-col :span="6">
       <div class="List">

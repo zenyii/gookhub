@@ -11,12 +11,13 @@ import Homepage from './HomePage.vue'
 import Navigator from './Navigator.vue'
 import LessonPage from './LessonPage.vue'
 import SearchPage from './SearchPage.vue'
+import NewPage from './NewPage.vue'
 export default {
   name: 'HelloWorld',
   data () {
     return {
       current:0,
-      comList:['Homepage','Personal','LessonPage','SearchPage'],                
+      comList:['Homepage','Personal','LessonPage','SearchPage','NewPage'],                
       menuItem:['个人信息','课程收藏','我的笔记','我的考试','会员状态','退出'],
       input:'',
       activeIndex:'',
@@ -47,7 +48,8 @@ export default {
     Homepage,
     Navigator,
     LessonPage,
-    SearchPage
+    SearchPage,
+    NewPage
   },
   methods:{
     handleSelect(key,keyPath){
