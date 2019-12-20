@@ -16,9 +16,11 @@
           <h3>密码：</h3>
           <el-input placeholder="请输入密码" v-model="password" style="width: 300px;" show-password clearable></el-input>
           <div style="font-size: 12px;color:red;" v-if="!pwdRight">*密码输入错误*</div>
-          <h6>忘记密码？</h6>
+          <el-link class="linker" :underline="false" style="font-size: 12px;margin:20px 0">忘记密码？</el-link>
           <el-button type="danger" style="width: 300px;font-size: 20px" @click="login()">登陆</el-button>
-          <div style="margin-top: 20px;"><span id="tips">创建新账号</span><span id="tips">管理员模式</span></div>
+          <div style="margin-top: 20px;">
+            <el-link id="tips" :underline="false" class="linker" @click="goRegister()">创建新账号</el-link>
+            <el-link id="tips" :underline="false" class="linker">管理员模式</el-link></div>
         </div>
       </el-col>
   </el-row>
@@ -81,6 +83,9 @@ export default {
         }
       });
    },
+   goRegister:function(){
+     this.$router.push({path:'/register'})
+   }
   }
 }
 </script>
@@ -108,5 +113,11 @@ export default {
   #tips{
     font-size: 12px;
     margin-left: 30px;
+  }
+  .linker{
+    color: white;
+  }
+  .linker :hover{
+    color: rgb(245, 108, 108);
   }
 </style>

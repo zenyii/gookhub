@@ -39,7 +39,8 @@ export default {
     return {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
       sorts:["相关","最多播放","最多收藏"],
       levels:["免费","白银会员","黄金会员","钻石会员","全部"],
-      content:""
+      content:"",
+      lessons:[]
     }
   }, props:[
     'userMsg'

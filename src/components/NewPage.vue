@@ -13,7 +13,7 @@
             <div style="margin-left: 30px;">
             <h1 style="color: rgb(24, 15, 66);">新闻排行</h1> 
             <span>最新</span> <span style="color: rgb(239, 37, 66);">最热</span>
-            <el-link v-for='(newItem,index) in allNews':key="index" :underline="false" @click="goNew(newItem.id)" style="font-size: 12px;margin-bottom: 5px;display: block;">
+            <el-link v-for='(newItem,index) in allNews':key="index" :underline="false" @click="searchNew(newItem.id)" style="font-size: 12px;margin-bottom: 5px;display: block;">
               <span style="color: rgb(239, 37, 66);font-size: 15px;margin-right: 5px;" v-if="index<3">{{index+1}}</span>
               <span style="font-size: 15px;margin-right: 5px;" v-if="index>2">{{index+1}}</span> {{newItem.title}}
             </el-link>
@@ -64,7 +64,17 @@ export default {
       })
   },
   methods:{
-   
+    searchNew(id){
+        this.$api.get('/get/one_news',{id:id},res=>{
+        if (res.status >= 200 && res.status < 300) {
+            //console.log(res)
+            this.news = res.data.data
+            //console.log(this.news)
+        }else {
+            console.log(res.message);
+        }
+        })
+    }
   }
 }
 </script>

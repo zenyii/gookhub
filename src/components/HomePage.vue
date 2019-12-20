@@ -9,7 +9,7 @@
         </el-col>      
         <el-col :span="12" style="margin-left: -70px;">            <!--//四个小推荐课程-->
           <el-row :gutter="20">
-            <el-col :span="12"><div style="overflow: hidden;width: 100%;height: 100%;"><el-image @click="goLesson(freeLesson[1].id)" :src="freeLesson[1].image" class="imgAnima"></el-image></div>{{freeLesson[1].lesson_name}}</el-col>
+            <el-col :span="12"><div style="overflow: hidden;width: 100%;height: 100%;"><el-image @click="goLesson(freeLesson[1].id)" :src="freeLesson[1].image" class="imgAnima" fit="fill"></el-image></div>{{freeLesson[1].lesson_name}}</el-col>
             <el-col :span="12"><div style="overflow: hidden;width: 100%;height: 100%;"><el-image @click="goLesson(freeLesson[2].id)" :src="freeLesson[2].image" class="imgAnima"></el-image></div>{{freeLesson[2].lesson_name}}</el-col>
           </el-row>
           <el-row :gutter="20">

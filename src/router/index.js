@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import MainLayout from '@/components/MainLayout'
 import LessonPage from '@/components/LessonPage'
+import Register from '@/components/Register'
 
 Vue.use(Router)
 
@@ -25,9 +26,9 @@ export default new Router({
       component: MainLayout
     },
     {
-      path: '/lesson',
-      name: 'LessonPage',
-      component: LessonPage
+      path: '/register',
+      name: 'Register',
+      component: Register
     },
   ]
 })
