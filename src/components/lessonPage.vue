@@ -22,15 +22,15 @@
         </el-col>
       </div>
     </el-row>
-    <el-row style="margin-left: 80px;margin-top: 50px;">
-      <el-col :span="16">
-      <iframe height=600 style="width: 95%;" :src='lesson.sourceUrl' frameborder=0></iframe>
-      </el-col>
-    <el-col :span="6">
+    <el-row style="margin-top:50px;">
+      <div style="margin: auto;width: 70%;">
+      <iframe height=800 style="width: 90%;" :src='lesson.sourceUrl' frameborder=0></iframe>
+      </div>
+    <!--<el-col :span="6">
       <div class="List">
-      <!--<div style="color: rgb(73, 72, 72);font-size: 25px;font-weight: bold;line-height: 40px;border-bottom: 1px solid white;width: 350px;margin-left: 15px;">视频选集<span style="float: right;">1/{{this.lesson.lessonList.length}}</span></div>-->
+      //<div style="color: rgb(73, 72, 72);font-size: 25px;font-weight: bold;line-height: 40px;border-bottom: 1px solid white;width: 350px;margin-left: 15px;">视频选集<span style="float: right;">1/{{this.lesson.lessonList.length}}</span></div>
       <div style="overflow: auto;height: 500px;">
-      <!--课程列表-->
+      //课程列表
       <el-menu
       default-active="2"
       class="el-menu-vertical-demo"
@@ -45,7 +45,7 @@
       </el-menu>
       </div>
       </div>
-    </el-col>
+    </el-col>-->
   </el-row>
   </div>
 </template>
@@ -64,30 +64,7 @@ export default {
         teacher:"刘讲师",
         introduce:"某高校著名讲师",
         sourceUrl:'//vjs.zencdn.net/v/oceans.mp4',
-        lessonList:[
-          {title:"简单介绍",src:""},
-          {title:"愉快地开始",src:""},
-          {title:"安装Python",src:""},
-          {title:"第一个Python程序",src:""},
-          {title:"数据类型和变量",src:""},
-          {title:"字符串和编码",src:""},
-          {title:"使用list和tuple",src:""},
-          {title:"条件判断",src:""},
-          {title:"循环",src:""},
-          {title:"使用dict和set",src:""},
-          {title:"函数",src:""},
-          {title:"简单介绍",src:""},
-          {title:"愉快地开始",src:""},
-          {title:"安装Python",src:""},
-          {title:"第一个Python程序",src:""},
-          {title:"数据类型和变量",src:""},
-          {title:"字符串和编码",src:""},
-          {title:"使用list和tuple",src:""},
-          {title:"条件判断",src:""},
-          {title:"循环",src:""},
-          {title:"使用dict和set",src:""},
-          {title:"函数",src:""},
-        ]
+        lessonList:[]
       }
     }
   },

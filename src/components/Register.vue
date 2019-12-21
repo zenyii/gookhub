@@ -127,7 +127,9 @@ export default {
 					password:this.password,
 					name:this.name
 				},res=>{
+					console.log(res)
 					if (res.status >= 200 && res.status < 300) {
+						console.log(login)
 						this.$router.push({path:'/login'})
 					}
 					else{

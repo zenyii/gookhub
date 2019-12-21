@@ -109,11 +109,24 @@
     </div>
     <!--课程收藏-->
     <div class="detailMsg" v-if="status[2]">
-      <el-row>
-        <el-col :span="2">
+      <el-row style="margin-top: 50px;">
+        <div style="width: 80%;background-color: black;">
+          <el-col :span="6"v-for="collect in collects">
+            <el-image :src="collect.image"></el-image>
+            <div >
+              <span>{{collect.lesson_name}}</span> 
+              <span style="float: right;">{{collect.speaker}}</span>
+            </div>
+          </el-col>
+        </div>
+      </el-row>
+    </div>
+    <!--我的笔记-->
 
-        </el-col>
-        <el-col :span="8"></el-col>
+    <!--我的考试-->
+    <div class="detailMsg" v-if="status[4]">
+      <el-row>
+        <div style="width: 70%;background: rgba(255, 255, 255, 0.6);"></div>
       </el-row>
     </div>
   </div>
@@ -125,18 +138,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      userData:{
-        id:1000945261,
-        eMail:'xiaomei@aa.com',
-        nickName:"爱学习的小美",
-        Tel:'12345678901',
-        sex:"女",
-        sign:"有志者事竟成",
-        beginDate:"2019.10.1",
-        endDate:"2020.10.1",
-        level:"vip2",
-        lessons:"免费课程、部分收费课程"
-      },
+      userData:{},
       status:[
         true,
         false,
@@ -154,12 +156,73 @@ export default {
       visible:false,
       checked:true,
       price:["18","54","216"],
-      current:0
+      current:0,
+      collects:[],
+      exams:[
+        {
+          lessonNameL:'零基础学习Python',
+          title:"列表知识考察",
+          time:60,
+          Allgrade:"100分"
+        },
+        {
+          lessonNameL:'零基础学习Python',
+          title:"元组知识考察",
+          time:60,
+          Allgrade:"100分"
+        },
+        {
+          lessonNameL:'零基础学习Python',
+          title:"字典知识考察",
+          time:60,
+          Allgrade:"100分"
+        }
+      ]
     }
   },
   props:[
     'userMsg'
   ],
+  created(){
+    let getStar = new Promise((resolve,reject)=>{
+        this.$api.get('/user/star_list',{userId:this.userMsg.id},res=>{
+          if (res.status >= 200 && res.status < 300) {
+            resolve(res)
+          }else{
+            reject(res)
+          }
+        })
+      }) 
+      let getExam = new Promise((resolve,reject)=>{
+        this.$api.get('/user/exam_list',{userId:this.userMsg.id},res=>{
+          if (res.status >= 200 && res.status < 300) {
+            resolve(res)
+          }else{
+            reject(res)
+          }
+        })
+      }) 
+      /*let getAll = new Promise((resolve,reject)=>{
+        this.$api.get('/get/all_lesson',{},res=>{
+          if (res.status >= 200 && res.status < 300) {
+            resolve(res)
+          }else{
+            reject(res)
+          }
+        })
+      })*/
+      Promise.all([getStar,getExam]).then(result=>{
+          console.log(result)
+          this.collects = result[0].data
+          this.exams = result[1].data
+          console.log(this.collects)
+          console.log(this.exams)
+      }).catch((error)=>{
+        console.log(error)
+      })
+      
+
+  },
   methods:{
     change:function(e){
       let index = e;

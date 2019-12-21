@@ -25,22 +25,14 @@
           <el-image :src="test" style="margin-top: 20px;"></el-image>
         </el-col>
         <el-col :span="12" style="border-left:2px solid white"> <!--名师直播-->
-          <img src="../assets/直播.png" style="width: 25px;"><label style="font-size: 25px;color: rgb(37, 75, 130);">名师直播</label>
-          <el-row :gutter="20" style="margin-top: 20px;">
-            <el-col :span="8" v-for="lesson in liveLessons">
-                <el-image  :src="lesson"></el-image>
+          <el-row><img src="../assets/直播.png" style="width: 25px;"><label style="font-size: 25px;color: rgb(37, 75, 130);">名师直播</label></el-row>  
+          <div style="margin-top:20px">
+          <el-row :gutter="10">
+            <el-col :span="8" v-for="lesson in allLesson">
+              <div style="overflow: hidden;width: 100%;height: 220px;"><el-image class="imgAnima" @click="goLesson(lesson.id)" :src="lesson.image"></el-image></div>
             </el-col>
           </el-row>
-          <el-row :gutter="20" style="margin-top: 20px;">
-            <el-col :span="8" v-for="lesson in liveLessons">
-              <el-image  :src="lesson"></el-image>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20" style="margin-top: 20px;">
-              <el-col :span="8" v-for="lesson in liveLessons">
-                <el-image  :src="lesson"></el-image>
-              </el-col>
-          </el-row>   
+          </div>
         </el-col>
       </el-row>
     </el-col>
@@ -72,7 +64,8 @@ export default {
         'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
         'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
       ],
-      news:[]
+      news:[],
+      allLesson:[]
     }
   },
   created:function(){
@@ -114,6 +107,7 @@ export default {
          //console.log(result)
           this.freeLesson = result[0].data.data
           this.news = result[1].data.data
+          this.allLesson = result[2].data.data
       }).catch((error)=>{
         console.log(error)
       })
