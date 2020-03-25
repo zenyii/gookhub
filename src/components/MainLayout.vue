@@ -2,7 +2,7 @@
   <div class="Main">
    <Navigator :userName="userData.name" :userImage="userData.user_image"></Navigator>
     <component :is="comList[current]" :userMsg="userData"></component>
-  </div>
+  </div>  
 </template>
 
 <script>
